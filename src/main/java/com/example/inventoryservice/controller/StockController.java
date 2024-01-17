@@ -1,5 +1,6 @@
 package com.example.inventoryservice.controller;
 
+import com.example.inventoryservice.dto.BookDto;
 import com.example.inventoryservice.dto.ResponseDto;
 import com.example.inventoryservice.feign.BookCatalogInterface;
 import com.example.inventoryservice.service.StockService;
@@ -22,6 +23,7 @@ public class StockController {
 
 
 
+    //update the inventory upon adding a new book
     @PutMapping(value = "/updateTheStockOfParticularTitle/{title}")
     public ResponseEntity updateListOfBooksForTitle(@PathVariable String title){
         try{
@@ -51,6 +53,25 @@ public class StockController {
             responseDto.setContent(null);
             return new ResponseEntity(responseDto, HttpStatus.BAD_REQUEST);
         }
+    }
+
+
+    //register all the new books then it will automatically update the stock as well
+    @PostMapping(value="/createStockOfParticularTitle/{bookCount}")
+    public ResponseEntity createBookStockForGivenTitleAndCount(@RequestBody BookDto bookDto, @PathVariable Integer bookCount){
+        //check if there is a book store already available for given title
+        if(stockService.checkStockAvailability(bookDto.getTitle()).equals("record_found")){
+           //if a stock is available update the existing count with the count pass to here
+           stockService.updateExistingBookStock(bookDto,bookCount);
+        }
+//        else{
+//          //if it is not available create a stock for this title with the count
+//
+//        }
+        responseDto.setCode("00");
+        responseDto.setMessage("success");
+        responseDto.setContent(null);
+        return new ResponseEntity(responseDto, HttpStatus.ACCEPTED);
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.inventoryservice.service;
 
+import com.example.inventoryservice.dto.BookDto;
 import com.example.inventoryservice.dto.ResponseDto;
 import com.example.inventoryservice.dto.StockDto;
 import com.example.inventoryservice.entity.Stock;
@@ -88,5 +89,19 @@ public class StockService {
 
         }
     }
+
+
+    //update the existing book count if a stock is available for a particular title
+    public String updateExistingBookStock(BookDto bookDto, Integer newCount) {
+        //have to register all the new book one by one => it will automatically update the stocks as well
+        for(int i=0; i<newCount; i++){
+            bookCatalogInterface.createSingleBook(bookDto);
+        }
+
+        return VarList.RSP_SUCCESS;
+
+    }
+
+
 
 }
