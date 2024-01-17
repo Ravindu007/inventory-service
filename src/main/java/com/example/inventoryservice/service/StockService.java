@@ -51,13 +51,10 @@ public class StockService {
 
         List<Integer> bookIds =  bookCatalogInterface.getaBookListbyTitle(title).getBody();
         System.out.println(bookIds); //still data not coming
-        if(!bookIds.isEmpty()){
-            stock.setBooks(bookIds);
-            stockRepo.save(stock);
-            return VarList.RSP_SUCCESS;
-        }else{
-            return VarList.RSP_ERROR;
-        }
+
+        stock.setBooks(bookIds);
+        stockRepo.save(stock);
+        return VarList.RSP_SUCCESS;
 
     }
 
@@ -74,13 +71,9 @@ public class StockService {
             System.out.println(bookIds);
             stock.setBooks(bookIds);
 
-            if(!bookIds.isEmpty()){
-                stock.setBooks(bookIds);
-                stockRepo.save(stock);
-                return VarList.RSP_SUCCESS;
-            }else{
-                return VarList.RSP_ERROR;
-            }
+            stock.setBooks(bookIds);
+            stockRepo.save(stock);
+            return VarList.RSP_SUCCESS;
 
         }
     }
