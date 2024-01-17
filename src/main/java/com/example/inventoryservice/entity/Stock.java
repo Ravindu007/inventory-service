@@ -15,12 +15,10 @@ public class Stock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer stockId;
+    private int stockId;
 
-    private String bookTitle;
-
-    private Integer bookCount;
+    private String stockTitle;
 
     @ElementCollection
-    private List<Integer> books; //list of the books of title of request
+    private List<Integer> books;
 }
