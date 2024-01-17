@@ -19,6 +19,8 @@ public class Stock {
 
     private String stockTitle;
 
+    private Integer bookCount;
+
     @ElementCollection
     private List<Integer> books;
 }

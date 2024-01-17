@@ -15,6 +15,8 @@ public class StockDto {
 
     private String bookTitle;
 
+    private Integer bookCount;
+
     @ElementCollection
     private List<Integer> books;
 }

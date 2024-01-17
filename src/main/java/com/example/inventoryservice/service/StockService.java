@@ -52,7 +52,13 @@ public class StockService {
         List<Integer> bookIds =  bookCatalogInterface.getaBookListbyTitle(title).getBody();
         System.out.println(bookIds);
 
+        int count = 0;
+        for(int i: bookIds){
+            count++;
+        }
+
         stock.setBooks(bookIds);
+        stock.setBookCount(count);
         stockRepo.save(stock);
         return VarList.RSP_SUCCESS;
 
@@ -68,8 +74,13 @@ public class StockService {
             Stock stock = stockRepo.findById(stock_id).get();
 
             List<Integer> bookIds =  bookCatalogInterface.getaBookListbyTitle(title).getBody();
-            System.out.println(bookIds);
+            int count = 0;
+            for(int i: bookIds){
+                count++;
+            }
+
             stock.setBooks(bookIds);
+            stock.setBookCount(count);
 
             stock.setBooks(bookIds);
             stockRepo.save(stock);
