@@ -28,7 +28,7 @@ public class StockService {
 
 
 
-    //check whether we have a stock with that title => return boolean
+    //check whether we have a stock with that title
     public String checkStockAvailability(String title){
         Integer stock_id = stockRepo.findByTitle(title);
         if(stock_id == null){
@@ -50,7 +50,7 @@ public class StockService {
         stockRepo.save(stock);
 
         List<Integer> bookIds =  bookCatalogInterface.getaBookListbyTitle(title).getBody();
-        System.out.println(bookIds); //still data not coming
+        System.out.println(bookIds);
 
         stock.setBooks(bookIds);
         stockRepo.save(stock);

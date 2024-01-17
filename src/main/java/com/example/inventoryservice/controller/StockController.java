@@ -28,7 +28,7 @@ public class StockController {
             if(stockService.checkStockAvailability(title).equals("no_record")){
               //create a stock if a stock is not available for that title
 
-                    System.out.println("stock is not available so I am creating one");
+              System.out.println("stock is not available so I am creating one");
               stockService.createStockWithData(title);
 
               responseDto.setCode("00");
@@ -37,9 +37,8 @@ public class StockController {
               return new ResponseEntity(responseDto, HttpStatus.ACCEPTED);
             }else{
               //update an existing stock with the title
-                    System.out.println("stock is avaialble");
+              System.out.println("stock is already available");
               stockService.updateBookStock(title);
-
 
               responseDto.setCode("00");
               responseDto.setMessage("success");
